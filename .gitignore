@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+tintaviva.db
+comprobantes/
+static/referencias/*
+!static/referencias/.gitkeep
+venv/
+.venv/

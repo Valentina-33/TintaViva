@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Portafolio</h2>
+  <form method="get" action="{{ url_for('portafolio') }}">
+    <label>Buscar por estilo o artista</label>
+    <input type="text" name="q" value="{{ busqueda }}" placeholder="ej. acuarela, Keyla, blackwork...">
+    <button type="submit">Buscar</button>
+  </form>
+
+  {% for d in disenos %}
+    <div class="card">
+      <h3>{{ d['nombre'] }}</h3>
+      <p><strong>Estilo:</strong> {{ d['estilo'] }} &middot; <strong>Artista:</strong> {{ d['artista'] }}</p>
+      <p>{{ d['descripcion'] }}</p>
+      <p><strong>Precio base:</strong> ${{ d['precio_base'] }} COP</p>
+    </div>
+  {% else %}
+    <p>No se encontraron disenos con ese criterio.</p>
+  {% endfor %}
+{% endblock %}

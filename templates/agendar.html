@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Agendar cita</h2>
+  <form method="post" action="{{ url_for('agendar') }}">
+    <label>Tu nombre</label>
+    <input type="text" name="cliente_nombre" required>
+
+    <label>Diseno</label>
+    <select name="diseno_id">
+      {% for d in disenos %}
+        <option value="{{ d['id'] }}">{{ d['nombre'] }} - {{ d['artista'] }}</option>
+      {% endfor %}
+    </select>
+
+    <label>Fecha deseada</label>
+    <input type="date" name="fecha" required>
+
+    <button type="submit">Confirmar cita</button>
+  </form>
+{% endblock %}

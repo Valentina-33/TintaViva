@@ -1,0 +1,10 @@
+# TintaViva - dependencias
+Flask==2.2.2
+
+# VULN-5 (CWE-1104 / CWE-937 - Uso de componente con vulnerabilidades conocidas)
+# Pillow 8.1.0 es una version antigua fijada a proposito. Tiene multiples CVEs
+# publicos de ejecucion remota de codigo / denegacion de servicio al procesar
+# imagenes manipuladas (por ejemplo CVE-2021-25287, CVE-2021-25288, CVE-2021-27921,
+# entre otros corregidos en versiones posteriores). La usamos aqui para procesar
+# las fotos de referencia que suben los clientes en /agendar.
+Pillow==8.1.0

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Iniciar sesion</h2>
+  <form method="post" action="{{ url_for('login') }}">
+    <label>Correo</label>
+    <input type="email" name="correo" required>
+    <label>Contrasena</label>
+    <input type="password" name="password" required>
+    <button type="submit">Entrar</button>
+  </form>
+  <p style="color:#7a6b58; font-size:0.85rem;">Usuario demo: cliente@correo.com / flordemayo123</p>
+{% endblock %}

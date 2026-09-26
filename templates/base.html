@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>TintaViva - Estudio de Tatuajes</title>
+  <style>
+    body { font-family: Georgia, serif; background: #1c1410; color: #f2e9dc; margin: 0; }
+    header { background: #3a2418; padding: 1.2rem 2rem; border-bottom: 3px solid #d4952c; }
+    header h1 { margin: 0; color: #d4952c; letter-spacing: 2px; }
+    nav a { color: #f2e9dc; margin-right: 1.2rem; text-decoration: none; }
+    nav a:hover { color: #d4952c; }
+    main { padding: 2rem; max-width: 900px; margin: 0 auto; }
+    .flash { background: #d4952c; color: #1c1410; padding: 0.6rem 1rem; border-radius: 4px; margin-bottom: 1rem; }
+    .card { background: #2a1e16; border: 1px solid #4a3626; border-radius: 8px; padding: 1rem; margin-bottom: 1rem; }
+    .card h3 { color: #d4952c; margin-top: 0; }
+    input, select, button { padding: 0.5rem; margin: 0.3rem 0; width: 100%; box-sizing: border-box; }
+    button { background: #d4952c; border: none; color: #1c1410; font-weight: bold; cursor: pointer; }
+    label { font-size: 0.9rem; color: #cbb89a; }
+    footer { text-align: center; padding: 1.5rem; color: #7a6b58; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>TintaViva</h1>
+    <nav>
+      <a href="{{ url_for('index') }}">Inicio</a>
+      <a href="{{ url_for('portafolio') }}">Portafolio</a>
+      <a href="{{ url_for('agendar') }}">Agendar cita</a>
+      <a href="{{ url_for('login') }}">Iniciar sesion</a>
+      <a href="{{ url_for('registro') }}">Registrarme</a>
+    </nav>
+  </header>
+  <main>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for m in messages %}
+          <div class="flash">{{ m }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+  <footer>TintaViva &middot; estudio de tatuajes y arte &middot; proyecto academico (Lab 04 - DevSecOps)</footer>
+</body>
+</html>
