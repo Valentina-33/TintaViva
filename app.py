@@ -12,9 +12,11 @@ Uso academico - Laboratorio de Auditoria de Sistemas & DevSecOps.
 """
 
 import os
+import os
 import sqlite3
-import hashlib
-from flask import Flask, request, render_template, redirect, url_for, send_file, flash
+from flask import Flask, request, render_template, redirect, url_for, send_from_directory, flash
+from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.secret_key = "dev"
