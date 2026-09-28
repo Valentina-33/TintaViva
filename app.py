@@ -92,7 +92,7 @@ def registro():
         # rainbow. Deberia usarse un algoritmo lento y con salt como
         # bcrypt, scrypt o argon2.
         # -------------------------------------------------------------
-        password_hash = hashlib.md5(password.encode()).hexdigest()
+        password_hash = generate_password_hash(password)
 
         conn = get_db()
         conn.execute(
@@ -112,18 +112,13 @@ def login():
     if request.method == "POST":
         correo = request.form["correo"]
         password = request.form["password"]
-        password_hash = hashlib.md5(password.encode()).hexdigest()  # ver VULN-4
-
         conn = get_db()
         cur = conn.cursor()
-        cur.execute(
-            "SELECT * FROM usuarios WHERE correo = ? AND password_hash = ?",
-            (correo, password_hash),
-        )
+        cur.execute("SELECT * FROM usuarios WHERE correo = ?", (correo,))
         usuario = cur.fetchone()
         conn.close()
 
-        if usuario:
+        if usuario and check_password_hash(usuario["password_hash"], password):
             flash(f"Bienvenida/o, {usuario['nombre']}.")
             return redirect(url_for("portafolio"))
         else:
