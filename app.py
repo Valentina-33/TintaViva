@@ -32,7 +32,7 @@ DB_NAME = "tintaviva.db"
 # En un caso real, esta clave quedaria ademas en el historial de git para
 # siempre, incluso si se borra despues de este commit.
 # ---------------------------------------------------------------------------
-NOTIFICACIONES_API_KEY = "tv_live_sk_8f61b3e0a92c4d7fa1b6e3d9c0f52a71"
+NOTIFICACIONES_API_KEY = os.environ.get("NOTIFICACIONES_API_KEY", "")
 
 
 def get_db():
