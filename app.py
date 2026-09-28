@@ -195,8 +195,7 @@ def ver_referencia(nombre_archivo):
     #   /referencia/../../../../etc/passwd
     # permite leer archivos arbitrarios del servidor.
     # -------------------------------------------------------------------
-    ruta = os.path.join("static/referencias", nombre_archivo)
-    return send_file(ruta)
+    return send_from_directory("static/referencias", nombre_archivo)
 
 
 if __name__ == "__main__":
