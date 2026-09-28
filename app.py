@@ -66,8 +66,9 @@ def portafolio():
         #   ' UNION SELECT id, correo, password_hash, 1, 1 FROM usuarios--
         # permite extraer datos de otras tablas de la base de datos.
         # -----------------------------------------------------------------
-        query = "SELECT * FROM disenos WHERE estilo LIKE '%" + busqueda + "%' OR artista LIKE '%" + busqueda + "%'"
-        cur.execute(query)
+        query = "SELECT * FROM disenos WHERE estilo LIKE ? OR artista LIKE ?"
+        like = f"%{busqueda}%"
+        cur.execute(query, (like, like))
     else:
         cur.execute("SELECT * FROM disenos")
 
