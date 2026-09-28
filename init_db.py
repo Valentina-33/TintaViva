@@ -9,7 +9,7 @@ Correr una sola vez antes de levantar la app:
 """
 
 import sqlite3
-import hashlib
+from werkzeug.security import generate_password_hash
 
 DB_NAME = "tintaviva.db"
 
@@ -78,7 +78,7 @@ def crear_base_datos():
     # facilmente reversible con tablas rainbow / fuerza bruta con GPU,
     # por lo que no es apto para proteger credenciales.
     password_demo = "flordemayo123"
-    password_hash = hashlib.md5(password_demo.encode()).hexdigest()
+    password_hash = generate_password_hash(password_demo)
 
     cur.execute(
         "INSERT INTO usuarios (nombre, correo, password_hash) VALUES (?, ?, ?)",
