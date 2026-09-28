@@ -159,8 +159,10 @@ def agendar():
         #   Ana; rm -rf /home/tintaviva/uploads; echo listo
         # permite ejecutar comandos arbitrarios en el servidor.
         # ---------------------------------------------------------------
-        nombre_archivo = f"comprobante_{cliente_nombre}.txt"
-        os.system(f"echo 'Cita confirmada para {cliente_nombre} el {fecha}' > comprobantes/{nombre_archivo}")
+        nombre_seguro = secure_filename(cliente_nombre) or "cliente"
+        ruta_comprobante = os.path.join("comprobantes", f"comprobante_{nombre_seguro}.txt")
+        with open(ruta_comprobante, "w", encoding="utf-8") as fh:
+            fh.write(f"Cita confirmada para {cliente_nombre} el {fecha}\n")
 
         notificar_cliente_demo(cliente_nombre)
 
