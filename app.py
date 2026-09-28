@@ -203,4 +203,5 @@ if __name__ == "__main__":
     os.makedirs("static/referencias", exist_ok=True)
     if not os.path.exists(DB_NAME):
         print("No se encontro la base de datos. Corre primero: python3 init_db.py")
-    app.run(debug=True, host="0.0.0.0", port=5000)
+    debug = os.environ.get("FLASK_DEBUG", "0") == "1"
+    app.run(debug=debug, host="127.0.0.1", port=5000)
